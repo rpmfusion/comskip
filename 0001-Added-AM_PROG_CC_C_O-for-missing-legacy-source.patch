@@ -1,0 +1,24 @@
+From 709c98160dd036369d1cabeba575103939810368 Mon Sep 17 00:00:00 2001
+From: Adrian Gilbert <adrian@gilbert.ca>
+Date: Thu, 9 Nov 2017 21:05:59 -0500
+Subject: [PATCH 01/10] Added AM_PROG_CC_C_O for missing legacy source
+
+---
+ configure.ac | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/configure.ac b/configure.ac
+index 0d02a9f..b0eca1e 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -51,6 +51,7 @@ PKG_CHECK_MODULES(sdl, [sdl >= 1.2.0], has_sdl=yes, has_sdl=no)
+ AC_MSG_CHECKING([whether to build the graphical user interface])
+ AC_MSG_RESULT([$has_sdl])
+ AM_CONDITIONAL([BUILD_GUI], [test "x${has_sdl}" = "xyes"])
++AM_PROG_CC_C_O
+ 
+ AC_CONFIG_FILES(Makefile)
+ AC_OUTPUT
+-- 
+2.14.3
+
