@@ -1,6 +1,6 @@
 Name:           comskip
 Version:        0.82.003
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A free commercial detector
 License:        GPLv2+
 URL:            https://github.com/erikkaashoek/Comskip
@@ -34,6 +34,9 @@ sed -i "s/0.81.098/%{version}/" configure.ac
 %{_bindir}/comskip
 
 %changelog
+* Thu Jul 26 2018 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.82.003-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
 * Sat Mar 17 2018 mprahl <mprahl@redhat.com> - 0.82.003-3
 - Explicitly disable the GUI
 - Fix compilation errors with newer ffmpeg versions
