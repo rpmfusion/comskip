@@ -1,13 +1,12 @@
+# suppress gcc-10 FTBFS
+%define _legacy_common_support 1
 Name:           comskip
-Version:        0.82.003
-Release:        7%{?dist}
+Version:        0.82.009
+Release:        1%{?dist}
 Summary:        A free commercial detector
 License:        GPLv2+
 URL:            https://github.com/erikkaashoek/Comskip
-Source0:        %{url}/archive/v%{version}.tar.gz
-Patch0:         0001-Added-AM_PROG_CC_C_O-for-missing-legacy-source.patch
-Patch1:		0002-replace-deprecated-CODEC_FLAG_GRAY.patch
-Patch2:		0003-Allow-GUI-to-be-explicitly-enabled-or-disabled-with-.patch
+Source0:        %{url}/archive/%{version}/Comskip-%{version}.tar.gz
 
 BuildRequires:  libtool
 BuildRequires:  argtable-devel
@@ -20,9 +19,9 @@ Comskip is a free commercial detector written by erikkaashoek
 %autosetup -p1 -n Comskip-%{version}
 
 %build
-# The version wasn't updated in the configure.ac file
-sed -i "s/0.81.098/%{version}/" configure.ac
 ./autogen.sh
+# suppress deprecated-declarations
+export CFLAGS='%{optflags} -Wno-deprecated-declarations'
 %configure --disable-gui
 %make_build
 
@@ -34,6 +33,9 @@ sed -i "s/0.81.098/%{version}/" configure.ac
 %{_bindir}/comskip
 
 %changelog
+* Sat Mar 14 2020 leigh123linux <leigh123linux@googlemail.com> - 0.82.009-1
+- Update to 0.82.009
+
 * Tue Feb 04 2020 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.82.003-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
