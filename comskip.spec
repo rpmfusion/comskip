@@ -1,3 +1,4 @@
+%global _lto_cflags %{nil}
 # suppress gcc-10 FTBFS
 %define _legacy_common_support 1
 Name:           comskip
