@@ -3,7 +3,7 @@
 %define _legacy_common_support 1
 Name:           comskip
 Version:        0.82.009
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        A free commercial detector
 License:        GPLv2+
 URL:            https://github.com/erikkaashoek/Comskip
@@ -34,6 +34,9 @@ export CFLAGS='%{optflags} -Wno-deprecated-declarations'
 %{_bindir}/comskip
 
 %changelog
+* Wed Feb 09 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.82.009-7
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
+
 * Thu Nov 11 2021 Leigh Scott <leigh123linux@gmail.com> - 0.82.009-6
 - Rebuilt for new ffmpeg snapshot
 
