@@ -1,28 +1,34 @@
-%global _lto_cflags %{nil}
-# suppress gcc-10 FTBFS
-%define _legacy_common_support 1
+%global date 20220225
+%global commit 9900227ae759e631e29abbbce99df6742651cfc5
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+
 Name:           comskip
-Version:        0.82.009
-Release:        7%{?dist}
+Version:        0.82.011
+Release:        0.1.%{date}git%{shortcommit}%{?dist}
 Summary:        A free commercial detector
 License:        GPLv2+
 URL:            https://github.com/erikkaashoek/Comskip
-Source0:        %{url}/archive/%{version}/Comskip-%{version}.tar.gz
+Source0:        %{url}/archive/%{commit}/Comskip-%{shortcommit}.tar.gz
 
 BuildRequires:  libtool
 BuildRequires:  argtable-devel
+%if 0%{?fedora} && 0%{?fedora} > 35
+BuildRequires:  compat-ffmpeg4-devel
+%else
 BuildRequires:  ffmpeg-devel
+%endif
 
 %description
 Comskip is a free commercial detector written by erikkaashoek
 
 %prep
-%autosetup -p1 -n Comskip-%{version}
+%autosetup -p1 -n Comskip-%{commit}
+NOCONFIGURE=1 ./autogen.sh
 
 %build
-./autogen.sh
-# suppress deprecated-declarations
-export CFLAGS='%{optflags} -Wno-deprecated-declarations'
+%if 0%{?fedora} && 0%{?fedora} > 35
+export PKG_CONFIG_PATH="%{_libdir}/compat-ffmpeg4/pkgconfig"
+%endif
 %configure --disable-gui
 %make_build
 
@@ -34,6 +40,10 @@ export CFLAGS='%{optflags} -Wno-deprecated-declarations'
 %{_bindir}/comskip
 
 %changelog
+* Sun Mar 06 2022 Leigh Scott <leigh123linux@gmail.com> - 0.82.011-0.1.20220225git9900227
+- Update to git snapshot
+- Switch to compat-ffmpeg4
+
 * Wed Feb 09 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.82.009-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
 
