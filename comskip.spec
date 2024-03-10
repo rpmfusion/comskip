@@ -1,14 +1,14 @@
-%global date 20220225
-%global commit 9900227ae759e631e29abbbce99df6742651cfc5
+%global date 20231230
+%global commit 109b5d10b086d299d7e43878ccc7951cb7133ed8
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           comskip
 Version:        0.82.011
-Release:        0.4.%{date}git%{shortcommit}%{?dist}
+Release:        0.5.%{date}git%{shortcommit}%{?dist}
 Summary:        A free commercial detector
-License:        GPLv2+
+License:        GPL-2.0-or-later
 URL:            https://github.com/erikkaashoek/Comskip
-Source0:        %{url}/archive/%{commit}/Comskip-%{shortcommit}.tar.gz
+Source0:        %{url}/archive/%{commit}/Comskip-%{commit}.tar.gz
 
 BuildRequires:  libtool
 BuildRequires:  argtable-devel
@@ -26,9 +26,7 @@ Comskip is a free commercial detector written by erikkaashoek
 NOCONFIGURE=1 ./autogen.sh
 
 %build
-%if 0%{?fedora} && 0%{?fedora} > 35
 export PKG_CONFIG_PATH="%{_libdir}/compat-ffmpeg4/pkgconfig"
-%endif
 %configure --disable-gui
 %make_build
 
@@ -40,6 +38,9 @@ export PKG_CONFIG_PATH="%{_libdir}/compat-ffmpeg4/pkgconfig"
 %{_bindir}/comskip
 
 %changelog
+* Sun Mar 10 2024 Antonio Trande <sagitter@fedoraproject.org> - 0.82.011-0.5.20231230git109b5d1
+- Update to commit 109b5d1
+
 * Sat Feb 03 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.82.011-0.4.20220225git9900227
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
 
