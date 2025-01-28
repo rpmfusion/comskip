@@ -4,7 +4,7 @@
 
 Name:           comskip
 Version:        0.82.011
-Release:        0.6.%{date}git%{shortcommit}%{?dist}
+Release:        0.7.%{date}git%{shortcommit}%{?dist}
 Summary:        A free commercial detector
 License:        GPL-2.0-or-later
 URL:            https://github.com/erikkaashoek/Comskip
@@ -38,6 +38,9 @@ export PKG_CONFIG_PATH="%{_libdir}/compat-ffmpeg4/pkgconfig"
 %{_bindir}/comskip
 
 %changelog
+* Tue Jan 28 2025 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.82.011-0.7.20231230git109b5d1
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild
+
 * Thu Aug 01 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.82.011-0.6.20231230git109b5d1
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
 
