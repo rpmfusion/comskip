@@ -1,22 +1,30 @@
+%global usesnapshot 0
+%if 0%{?usesnapshot}
 %global date 20231230
 %global commit 109b5d10b086d299d7e43878ccc7951cb7133ed8
+%global vcommit commit
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global relver .%{date}git%{shortcommit}
+%else
+%global commit %{version}
+%global vcommit V%{version}
+%endif
 
 Name:           comskip
-Version:        0.82.011
-Release:        0.7.%{date}git%{shortcommit}%{?dist}
+Version:        0.83
+Release:        1%{?relver}%{?dist}
 Summary:        A free commercial detector
 License:        GPL-2.0-or-later
 URL:            https://github.com/erikkaashoek/Comskip
-Source0:        %{url}/archive/%{commit}/Comskip-%{commit}.tar.gz
+Source0:        %{url}/archive/%{vcommit}/Comskip-%{commit}.tar.gz
 
 BuildRequires:  libtool
 BuildRequires:  argtable-devel
-%if 0%{?fedora} && 0%{?fedora} > 35
-BuildRequires:  compat-ffmpeg4-devel
-%else
+#%%if 0%%{?fedora} && 0%%{?fedora} > 35
+#BuildRequires:  compat-ffmpeg4-devel
+#%%else
 BuildRequires:  ffmpeg-devel
-%endif
+#%%endif
 
 %description
 Comskip is a free commercial detector written by erikkaashoek
@@ -26,7 +34,8 @@ Comskip is a free commercial detector written by erikkaashoek
 NOCONFIGURE=1 ./autogen.sh
 
 %build
-export PKG_CONFIG_PATH="%{_libdir}/compat-ffmpeg4/pkgconfig"
+#export PKG_CONFIG_PATH="%%{_libdir}/compat-ffmpeg4/pkgconfig"
+export CFLAGS="$CFLAGS -std=gnu17"
 %configure --disable-gui
 %make_build
 
@@ -38,6 +47,11 @@ export PKG_CONFIG_PATH="%{_libdir}/compat-ffmpeg4/pkgconfig"
 %{_bindir}/comskip
 
 %changelog
+* Mon Mar 03 2025 Sérgio Basto <sergio@serjux.com> - 0.83-1
+- Update comskip to 0.83
+- Build with ffmpeg-devel
+- Build with std=gnu17
+
 * Tue Jan 28 2025 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.82.011-0.7.20231230git109b5d1
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild
 
