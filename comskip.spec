@@ -12,7 +12,7 @@
 
 Name:           comskip
 Version:        0.83
-Release:        1%{?relver}%{?dist}
+Release:        2%{?relver}%{?dist}
 Summary:        A free commercial detector
 License:        GPL-2.0-or-later
 URL:            https://github.com/erikkaashoek/Comskip
@@ -47,6 +47,9 @@ export CFLAGS="$CFLAGS -std=gnu17"
 %{_bindir}/comskip
 
 %changelog
+* Sun Jul 27 2025 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.83-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_43_Mass_Rebuild
+
 * Mon Mar 03 2025 Sérgio Basto <sergio@serjux.com> - 0.83-1
 - Update comskip to 0.83
 - Build with ffmpeg-devel
