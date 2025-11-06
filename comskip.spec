@@ -12,10 +12,11 @@
 
 Name:           comskip
 Version:        0.83
-Release:        3%{?relver}%{?dist}
+Release:        4%{?relver}%{?dist}
 Summary:        A free commercial detector
 License:        GPL-2.0-or-later
 URL:            https://github.com/erikkaashoek/Comskip
+Patch0:       https://patch-diff.githubusercontent.com/raw/erikkaashoek/Comskip/pull/187.patch
 Source0:        %{url}/archive/%{vcommit}/Comskip-%{commit}.tar.gz
 
 BuildRequires:  libtool
@@ -47,6 +48,9 @@ export CFLAGS="$CFLAGS -std=gnu17"
 %{_bindir}/comskip
 
 %changelog
+* Thu Nov 06 2025 Nicolas Chauvet <kwizart@gmail.com> - 0.83-4
+- Backport FFmpeg-8 patch from PR
+
 * Wed Nov 05 2025 Leigh Scott <leigh123linux@gmail.com> - 0.83-3
 - Rebuild for ffmpeg-8.0
 
