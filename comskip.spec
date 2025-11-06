@@ -21,11 +21,7 @@ Source0:        %{url}/archive/%{vcommit}/Comskip-%{commit}.tar.gz
 
 BuildRequires:  libtool
 BuildRequires:  argtable-devel
-#%%if 0%%{?fedora} && 0%%{?fedora} > 35
-#BuildRequires:  compat-ffmpeg4-devel
-#%%else
 BuildRequires:  ffmpeg-devel
-#%%endif
 
 %description
 Comskip is a free commercial detector written by erikkaashoek
@@ -35,7 +31,6 @@ Comskip is a free commercial detector written by erikkaashoek
 NOCONFIGURE=1 ./autogen.sh
 
 %build
-#export PKG_CONFIG_PATH="%%{_libdir}/compat-ffmpeg4/pkgconfig"
 export CFLAGS="$CFLAGS -std=gnu17"
 %configure --disable-gui
 %make_build
